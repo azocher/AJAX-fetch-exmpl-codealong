@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const requestUrl = "https://randomuser.me/api/?results="
     let inputForm = document.querySelector("form")
     let peopleList = document.querySelector("#peopleList")
+    let peopleRes = []
 
     // REQUEST DATA
     // take form element and prevent default behavior
@@ -15,7 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(requestUrl + userInput)
             // .then --> take response data and format
             .then((res) => {
-                console.log("Response came back!")
+                return res.json()
+            })
+            // .then --> use response JSON data
+            .then((jsonData) => {
+                peopleRes = jsonData.results
             })
             // .catch --> catch errors
             .catch((err) => {
