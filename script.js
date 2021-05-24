@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // .then --> use response JSON data
             .then((jsonData) => {
                 peopleRes = jsonData.results
+                domPeopleList(peopleRes)
             })
             // .catch --> catch errors
             .catch((err) => {
@@ -33,7 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // RESPONSE DATA
     // collect formated data
-        // create an li element for each response
-        // add li element to DOM
-
+    function domPeopleList(resArr) {
+          resArr.forEach((person) => {
+            // create an li element for each response
+            let li = document.createElement("li")
+            li.textContent = person.name.first + " " + person.name.last
+            
+            // add li element to DOM
+            peopleList.appendChild(li)
+        })
+    }
 })
